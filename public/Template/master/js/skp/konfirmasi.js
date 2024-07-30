@@ -107,6 +107,7 @@ $('#formEdit').on('submit', function(e) {
         data: formData, // Serialize form data
         success: function(response) {
             if (response.status == 200) {
+                console.log(response);
                 $('#editModal').modal('hide'); // Hide the modal on success
                 var oTable = $('#table-konfirmasi').dataTable(); //inialisasi datatable
                 oTable.fnDraw(false); //reset datatable

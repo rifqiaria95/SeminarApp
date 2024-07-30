@@ -69,11 +69,7 @@
                         <div class="alert {{ $peserta->konfirmasi->status_pembayaran === 0 ? 'alert-warning' : 'alert-success' }} mb-3" role="alert">
                             <h5 class="alert-heading mb-1">Status Pembayaran:</h5>
                             <span>
-                                @if($peserta->status_pembayaran === 0)
-                                    Menunggu Pembayaran
-                                @else
-                                    Lunas
-                                @endif
+                                {{ $peserta->konfirmasi->status_pembayaran === 0 ? 'Menunggu Pembayaran' : 'Lunas' }}
                             </span>
                         </div>
                         <div class="plan-statistics">
