@@ -1,0 +1,34 @@
+@media (max-width: 480px) { 
+  .app-content .content-wrapper .content-body .image-hero {
+    width: 90%;
+  }
+
+  .app-content .content-wrapper .content-body .survey-content {
+    width: 90%;
+  }
+}
+
+
+@media (min-width: 768px) { 
+  .app-content .content-wrapper .content-body .image-hero {
+    width: 90%;
+  }
+
+  .app-content .content-wrapper .content-body .survey-content {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1200px) { 
+  .app-content .content-wrapper .content-body .survey-content .card {
+    padding-inline: 50px;
+  }
+
+  .app-content .content-wrapper .content-body .image-hero {
+    width: 50%;
+  }
+
+  .app-content .content-wrapper .content-body .survey-content {
+    width: 50%;
+  }
+}
