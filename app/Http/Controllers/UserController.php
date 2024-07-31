@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -15,18 +16,17 @@ class UserController extends Controller
     public function index(Request $request)
     {
         // Menampilkan Data user
-        $user       = User::all();
+        $user     = User::all();
+        $userRole = Auth::user()->role;
+        
         // dd($kelas);
         if ($request->ajax()) {
             return datatables()->of($user)
             ->addColumn('status_user', function(User $user) {
                 $inactive = '<span class="badge bg-label-danger">Inactive</span>';
                 $active   = '<span class="badge bg-label-success">Active</span>';
-                if($user->status_user == 0) {
-                    return $inactive;
-                }  else if ($user->status_user == 1) {
-                    return $active;
-                }
+
+                return $user->status_user === 0 ? $inactive : $active;
             })
             ->addColumn('aksi', function ($data) {
                 $button = '<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -34,8 +34,8 @@ class UserController extends Controller
                     <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $data->id . '" data-original-title="Edit" class="edit btn btn-primary btn-sm edit-user"><i class="fa-solid fa-pen"></i></a>
                     <button type="button" name="delete" id="' . $data->id . '" class="delete btn btn-danger btn-sm"><i class="far fa-trash-alt"></i></button>
                     <a href="user/profile/' . $data->id . '" name="view" class="view btn btn-secondary btn-sm"><i class="far fa-eye"></i></a>
-                </div>
-            </div>';
+                    </div>
+                </div>';
                 return $button;
             })
             ->rawColumns(['status_user', 'aksi'])
@@ -43,7 +43,7 @@ class UserController extends Controller
             ->toJson();
         }
 
-        return view('user.index', compact(['user']));
+        return view('user.index', compact(['user', 'userRole']));
     }
 
     public function store(Request $request)

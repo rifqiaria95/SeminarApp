@@ -24,21 +24,178 @@ $(document).ready(function() {
             search: '',
             searchPlaceholder: 'Search..'
         },
-        buttons: [],
+        buttons: [
+            {
+                extend: 'collection',
+                className: 'btn btn-label-secondary dropdown-toggle mx-3',
+                text: '<i class="ti ti-screen-share me-1 ti-xs"></i>Export',
+                buttons: [
+                {
+                    extend: 'print',
+                    text: '<i class="ti ti-printer me-2" ></i>Print',
+                    className: 'dropdown-item',
+                    exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                    // prevent avatar to be print
+                    format: {
+                        body: function (inner, coldex, rowdex) {
+                        if (inner.length <= 0) return inner;
+                        var el = $.parseHTML(inner);
+                        var result = '';
+                        $.each(el, function (index, item) {
+                            if (item.classList !== undefined && item.classList.contains('user-name')) {
+                            result = result + item.lastChild.firstChild.textContent;
+                            } else if (item.innerText === undefined) {
+                            result = result + item.textContent;
+                            } else result = result + item.innerText;
+                        });
+                        return result;
+                        }
+                    }
+                    },
+                    customize: function (win) {
+                    //customize print view for dark
+                    $(win.document.body)
+                        .css('color', headingColor)
+                        .css('border-color', borderColor)
+                        .css('background-color', bodyBg);
+                    $(win.document.body)
+                        .find('table')
+                        .addClass('compact')
+                        .css('color', 'inherit')
+                        .css('border-color', 'inherit')
+                        .css('background-color', 'inherit');
+                    }
+                },
+                {
+                    extend: 'csv',
+                    text: '<i class="ti ti-file-text me-2" ></i>Csv',
+                    className: 'dropdown-item',
+                    exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                    // prevent avatar to be display
+                    format: {
+                        body: function (inner, coldex, rowdex) {
+                        if (inner.length <= 0) return inner;
+                        var el = $.parseHTML(inner);
+                        var result = '';
+                        $.each(el, function (index, item) {
+                            if (item.classList !== undefined && item.classList.contains('user-name')) {
+                            result = result + item.lastChild.firstChild.textContent;
+                            } else if (item.innerText === undefined) {
+                            result = result + item.textContent;
+                            } else result = result + item.innerText;
+                        });
+                        return result;
+                        }
+                    }
+                    }
+                },
+                {
+                    extend: 'excel',
+                    text: '<i class="ti ti-file-spreadsheet me-2"></i>Excel',
+                    className: 'dropdown-item',
+                    exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                    // prevent avatar to be display
+                    format: {
+                        body: function (inner, coldex, rowdex) {
+                        if (inner.length <= 0) return inner;
+                        var el = $.parseHTML(inner);
+                        var result = '';
+                        $.each(el, function (index, item) {
+                            if (item.classList !== undefined && item.classList.contains('user-name')) {
+                            result = result + item.lastChild.firstChild.textContent;
+                            } else if (item.innerText === undefined) {
+                            result = result + item.textContent;
+                            } else result = result + item.innerText;
+                        });
+                        return result;
+                        }
+                    }
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    text: '<i class="ti ti-file-code-2 me-2"></i>Pdf',
+                    className: 'dropdown-item',
+                    exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                    // prevent avatar to be display
+                    format: {
+                        body: function (inner, coldex, rowdex) {
+                        if (inner.length <= 0) return inner;
+                        var el = $.parseHTML(inner);
+                        var result = '';
+                        $.each(el, function (index, item) {
+                            if (item.classList !== undefined && item.classList.contains('user-name')) {
+                            result = result + item.lastChild.firstChild.textContent;
+                            } else if (item.innerText === undefined) {
+                            result = result + item.textContent;
+                            } else result = result + item.innerText;
+                        });
+                        return result;
+                        }
+                    }
+                    }
+                },
+                {
+                    extend: 'copy',
+                    text: '<i class="ti ti-copy me-2" ></i>Copy',
+                    className: 'dropdown-item',
+                    exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                    // prevent avatar to be display
+                    format: {
+                        body: function (inner, coldex, rowdex) {
+                        if (inner.length <= 0) return inner;
+                        var el = $.parseHTML(inner);
+                        var result = '';
+                        $.each(el, function (index, item) {
+                            if (item.classList !== undefined && item.classList.contains('user-name')) {
+                            result = result + item.lastChild.firstChild.textContent;
+                            } else if (item.innerText === undefined) {
+                            result = result + item.textContent;
+                            } else result = result + item.innerText;
+                        });
+                        return result;
+                        }
+                    }
+                    }
+                }
+                ]
+            },
+        ],
         processing: true,
         serverSide: true, //aktifkan server-side 
         ajax: {
             url: "/peserta",
             type: 'GET'
         },
-        columns: [
-            { data: 'kode_registrasi', name: 'kode_registrasi' },
-            { data: 'nama_lengkap', name: 'nama_lengkap' },
-            { data: 'phone', name: 'phone' },
-            { data: 'seminar', name: 'seminar' },
-            { data: 'aksi', name: 'aksi' }
+        columns: [{
+                data: 'kode_registrasi',
+                name: 'kode_registrasi'
+            },
+            {
+                data: 'nama_lengkap',
+                name: 'nama_lengkap'
+            },
+            {
+                data: 'phone',
+                name: 'phone'
+            },
+            {
+                data: 'seminar',
+                name: 'seminar'
+            },
+            {
+                data: 'aksi',
+                name: 'aksi'
+            },
         ],
-        order: [ [0, 'asc'] ]
+        order: [
+            [0, 'asc']
+        ],
     };
 
     if (userRole === 'owner') {

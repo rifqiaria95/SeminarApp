@@ -16,11 +16,11 @@ class PesertaController extends Controller
 {
     public function index(Request $request)
     {
-        $peserta = Peserta::all();
+        $peserta   = Peserta::all();
         $startDate = now()->subDays(30);
-        $endDate = now();
-        $seminar = DataSeminar::whereBetween('created_at', [$startDate, $endDate])->get();
-        $userRole = Auth::user()->role;
+        $endDate   = now();
+        $seminar   = DataSeminar::whereBetween('created_at', [$startDate, $endDate])->get();
+        $userRole  = Auth::user()->role;
 
         if ($request->ajax()) {
             return datatables()->of($peserta)

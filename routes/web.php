@@ -20,6 +20,7 @@ Route::get('/', 'SiteController@home');
 Route::get('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'authenticate']);
 
+// ----------------------------- Route yang bisa diakses oleh Owner & Admin -------------------------------- //
 Route::group(['middleware' => ['auth', 'checkRole:owner,admin']], function () {
     
     // Route Dashboard
@@ -52,9 +53,12 @@ Route::group(['middleware' => ['auth', 'checkRole:owner,admin']], function () {
     Route::post('konfirmasi/update/{id}', 'KonfirmasiController@update');
     Route::get('konfirmasi/detail/{id}', 'KonfirmasiController@detailPembayaran');
     
-
     // Route Report Kehadiran
     Route::get('report', 'ReportController@index');
+
+});
+
+Route::group(['middleware' => ['auth', 'checkRole:owner']], function () {
 
     // Route Data User
     Route::get('user', 'UserController@index');
@@ -62,7 +66,6 @@ Route::group(['middleware' => ['auth', 'checkRole:owner,admin']], function () {
     Route::get('user/edit/{id}', 'UserController@edit');
     Route::post('user/update/{id}', 'UserController@update');
     Route::delete('user/delete/{id}', 'UserController@destroy');
-
 });
 
 // ----------------------------- Route yang bisa diakses oleh semua user tanpa login -------------------------------- //

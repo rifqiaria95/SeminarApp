@@ -32,7 +32,10 @@ class KonfirmasiController extends Controller
                     return $konfirmasi->peserta->data_seminar->judul;
                 })
                 ->addColumn('status_pembayaran', function(Konfirmasi $konfirmasi) {
-                    return $konfirmasi->status_pembayaran === 0 ? 'Pending' : 'Lunas';
+                    $pending = '<span class="badge bg-label-warning">Pending</span>';
+                    $Lunas   = '<span class="badge bg-label-success">Lunas</span>';
+
+                    return $konfirmasi->status_pembayaran === 0 ? $pending : $lunas;
                 })
                 ->addColumn('aksi', function ($data) {
                     $button = '<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
@@ -44,7 +47,7 @@ class KonfirmasiController extends Controller
                     </div>';
                     return $button;
                 })
-                ->rawColumns(['aksi', 'kode_registrasi', 'nama_lengkap', 'phone', 'judul'])
+                ->rawColumns(['aksi', 'kode_registrasi', 'nama_lengkap', 'phone', 'judul', 'status_pembayaran'])
                 ->addIndexColumn()
                 ->toJson();
         }

@@ -83,27 +83,28 @@
             </div>
             <!-- Users List Table -->
             <div class="card">
-            <div class="card-header border-bottom">
-                <h5 class="card-title mb-3">Search Filter</h5>
-                <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
-                <div class="col-md-4 user_role"></div>
-                <div class="col-md-4 user_plan"></div>
-                <div class="col-md-4 user_status"></div>
+                <div class="card-header border-bottom">
+                    <h5 class="card-title mb-3">Search Filter</h5>
+                    <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
+                    <div class="col-md-4 user_role"></div>
+                    <div class="col-md-4 user_plan"></div>
+                    <div class="col-md-4 user_status"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="card-datatable table-responsive">
-                <table id="table-user" class="datatables-users table border-top">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                </table>
+                <div class="card-datatable table-responsive">
+                    <table id="table-user" class="datatables-users table border-top">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    </table>
+                </div>
             </div>
             <!-- Modal Tambah Seminar -->
             <div class="modal fade text-start" id="tambahModal" tabindex="-1" aria-labelledby="myModalLabel18" aria-hidden="true">
@@ -250,4 +251,8 @@
     <!-- Page JS -->
     <script src="{{ asset('Template/master/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ asset('Template/master/js/skp/user.js') }}"></script>
+
+    <script>
+        var userRole = {!! json_encode($userRole) !!};
+    </script>
 @endsection

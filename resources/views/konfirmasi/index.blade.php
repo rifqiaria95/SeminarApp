@@ -83,28 +83,29 @@
             </div>
             <!-- Users List Table -->
             <div class="card">
-            <div class="card-header border-bottom">
-                <h5 class="card-title mb-3">Search Filter</h5>
-                <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
-                <div class="col-md-4 user_role"></div>
-                <div class="col-md-4 user_plan"></div>
-                <div class="col-md-4 user_status"></div>
+                <div class="card-header border-bottom">
+                    <h5 class="card-title mb-3">Search Filter</h5>
+                    <div class="d-flex justify-content-between align-items-center row pb-2 gap-3 gap-md-0">
+                    <div class="col-md-4 user_role"></div>
+                    <div class="col-md-4 user_plan"></div>
+                    <div class="col-md-4 user_status"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="card-datatable table-responsive">
-                <table id="table-konfirmasi" class="datatables-users table border-top">
-                <thead>
-                    <tr>
-                        <th>Kode Registrasi</th>
-                        <th>Nama Lengkap</th>
-                        <th>No. Telepon</th>
-                        <th>Judul Seminar</th>
-                        <th>Bukti Pembayaran</th>
-                        <th>Status Pembayaran</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                </table>
+                <div class="card-datatable table-responsive">
+                    <table id="table-konfirmasi" class="datatables-users table border-top">
+                    <thead>
+                        <tr>
+                            <th>Kode Registrasi</th>
+                            <th>Nama Lengkap</th>
+                            <th>No. Telepon</th>
+                            <th>Judul Seminar</th>
+                            <th>Bukti Pembayaran</th>
+                            <th>Status Pembayaran</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    </table>
+                </div>
             </div>
 
             <!-- Modal Edit peserta -->
@@ -171,8 +172,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js" integrity="sha256-sPB0F50YUDK0otDnsfNHawYmA5M0pjjUf4TvRJkGFrI=" crossorigin="anonymous"></script>
     <script src="{{ asset('Template/master/js/tables-datatables-basic.js') }}"></script>
     <script src="{{ asset('Template/master/js/skp/konfirmasi.js') }}"></script>
-
-    {{-- <script>
-        var userRole = {!! json_encode($userRole) !!};
-    </script> --}}
 @endsection

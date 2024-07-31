@@ -6,12 +6,8 @@ $(document).ready(function() {
     });
 });
 
-
-//MULAI DATATABLE
-//script untuk memanggil data json dari server dan menampilkannya berupa datatable
 $(document).ready(function() {
-    // $.noConflict();
-    $('#table-user').DataTable({
+    var tableOptions = {
         dom:
             '<"row me-2"' +
             '<"col-md-2"<"me-3"l>>' +
@@ -167,14 +163,6 @@ $(document).ready(function() {
                 }
                 ]
             },
-            {
-                text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Tambah User</span>',
-                className: 'btn_tambah add-new btn btn-primary mx-3',
-                attr: {
-                    'data-bs-toggle': 'tambahModal',
-                    'data-bs-target': '#tambahModal'
-                }
-            },
         ],
         processing: true,
         serverSide: true, //aktifkan server-side 
@@ -210,8 +198,20 @@ $(document).ready(function() {
         order: [
             [0, 'asc']
         ],
-        
-    });
+    };
+
+    if (userRole === 'owner') {
+        tableOptions.buttons.push({
+            text: '<i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Tambah User</span>',
+            className: 'btn_tambah add-new btn btn-primary mx-3',
+            attr: {
+                'data-bs-toggle': 'tambahModal',
+                'data-bs-target': '#tambahModal'
+            }
+        });
+    }
+
+    $('#table-user').DataTable(tableOptions);
 });
 
 
