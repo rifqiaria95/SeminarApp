@@ -33,7 +33,7 @@ class KonfirmasiController extends Controller
                 })
                 ->addColumn('status_pembayaran', function(Konfirmasi $konfirmasi) {
                     $pending = '<span class="badge bg-label-warning">Pending</span>';
-                    $Lunas   = '<span class="badge bg-label-success">Lunas</span>';
+                    $lunas   = '<span class="badge bg-label-success">Lunas</span>';
 
                     return $konfirmasi->status_pembayaran === 0 ? $pending : $lunas;
                 })
